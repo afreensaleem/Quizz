@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    
+    <!-- Progress + Question Number -->
+    <div class="question-header">
+        <span class="progress">{{ progress }}</span>
+    </div>
+
+    <!-- Question Text -->
+    <h3 class="question-text">{{ question.question }}</h3>
+
+    <!-- Options in 2x2 grid -->
+    <form method="POST" action="/question">
+        <div class="options-grid">
+            {% for opt in options %}
+                <button type="button" class="option-btn" value="{{ opt }}">
+               {{ opt }}
+               </button>
+            {% endfor %}
+        </div>
+        <input type="hidden" name="option" id="selectedOption">
+        <button type="submit">Next</button>
+    </form>
+</div>
+
+
+<script>
+const buttons = document.querySelectorAll(".option-btn");
+const hiddenInput = document.getElementById("selectedOption");
+
+buttons.forEach(button => {
+    button.addEventListener("click", function () {
+        // Remove highlight from all buttons
+        buttons.forEach(btn => btn.classList.remove("selected"));
+        // Highlight the clicked button
+        this.classList.add("selected");
+        // Store value in hidden input
+        hiddenInput.value = this.value;
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <!-- In your HTML head -->
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<h2>Your Score: {{ score }} / {{ total }}</h2>
+<a href="/dashboard">Back to Dashboard</a>
+
+</body>
+</html>
